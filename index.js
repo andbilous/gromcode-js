@@ -1,5 +1,5 @@
 function run() {
-    const a = 0;
+    var a = 0;
 
     if (a == 1) {
         return c;
