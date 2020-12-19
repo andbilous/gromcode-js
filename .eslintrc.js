@@ -1,13 +1,14 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "es2020": true
+    extends: ['airbnb-base', 'prettier'],
+    parser: 'babel-eslint',
+    env: {
+        browser: true,
+        es6: true,
+        jest: true,
     },
-    "extends": "eslint:recommended",
-    "parserOptions": {
-        "ecmaVersion": 11,
-        "sourceType": "module"
+    rules: {
+        'no-console': 0,
+        'import/prefer-default-export': 0,
+        'prefer-template': 0,
     },
-    "rules": {
-    }
 };
