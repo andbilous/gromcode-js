@@ -1,6 +1,0 @@
-consistent-return
-eqeqeq
-no-undef
-no-plusplus
-no-return-assign
-no-var
