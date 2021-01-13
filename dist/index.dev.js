@@ -3,10 +3,10 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.setButton = void 0;
+exports.clearList = void 0;
 
-var setButton = function setButton(text) {
-  document.querySelector('body').innerHTML = "<button>".concat(text, "</button>");
+var clearList = function clearList() {
+  document.querySelector(".categories").innerHTML = '';
 };
 
-exports.setButton = setButton;
+exports.clearList = clearList;
