@@ -3,10 +3,10 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.setTitle = void 0;
+exports.setButton = void 0;
 
-var setTitle = function setTitle(text) {
-  document.querySelector('.title').textContent = text;
+var setButton = function setButton(text) {
+  document.querySelector('body').innerHTML = "<button>".concat(text, "</button>");
 };
 
-exports.setTitle = setTitle;
+exports.setButton = setButton;
