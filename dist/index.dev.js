@@ -3,10 +3,12 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.clearList = void 0;
+exports.createButton = void 0;
 
-var clearList = function clearList() {
-  document.querySelector(".categories").innerHTML = '';
+var createButton = function createButton(text) {
+  var btn = document.createElement('button');
+  btn.textContent = text;
+  document.querySelector('body').appendChild(btn);
 };
 
-exports.clearList = clearList;
+exports.createButton = createButton;
