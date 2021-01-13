@@ -1,30 +1,30 @@
-/* eslint-disable no-restricted-syntax */
+const tasks = [
+  { text: "Buy milk", done: false },
+  { text: "Pick up Tom from airport", done: false },
+  { text: "Visit party", done: false },
+  { text: "Visit doctor", done: true },
+  { text: "Buy meat", done: true },
+];
 
-export const reverseArray = (arr) => {
-  if (!Array.isArray(arr)) {
-    return null;
-  }
-  const res = [...arr];
-  return res.reverse();
+const renderListItems = (listItems) => {
+  const listElem = document.querySelector(".list");
+  const listItemsElems = listItems
+    .sort((a, b) => a.done - b.done)
+    .map(({ text, done }) => {
+      const listItemElem = document.createElement("li");
+      listItemElem.classList.add("list__item");
+      if (done) {
+        listItemElem.classList.add("list__item-done");
+      }
+      const checkboxElem = document.createElement("input");
+      checkboxElem.setAttribute("type", "checkbox");
+      checkboxElem.checked = done;
+
+      checkboxElem.classList.add("list__item-checkbox");
+      listItemElem.append(checkboxElem, text);
+      return listItemElem;
+    });
+  listElem.append(...listItemsElems);
 };
 
-export const withdraw = (clients, balances, client, amount) => {
-  const index = clients.indexOf(client);
-  if (balances[index] - amount < 0) {
-    return -1;
-  }
-  return balances[index] - amount;
-};
-
-export const getAdults = (obj) => {
-  if (typeof obj !== "object") {
-    return null;
-  }
-  const res = {};
-  for (const key in obj) {
-    if (obj[key] >= 18) {
-      res[key] = obj[key];
-    }
-  }
-  return res;
-};
+renderListItems(tasks);

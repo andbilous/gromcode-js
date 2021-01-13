@@ -1,93 +1,52 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.UserRepository = exports.User = void 0;
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
-/* eslint-disable consistent-return */
+var tasks = [{
+  text: 'Buy milk',
+  done: false
+}, {
+  text: 'Pick up Tom from airport',
+  done: false
+}, {
+  text: 'Visit party',
+  done: false
+}, {
+  text: 'Visit doctor',
+  done: true
+}, {
+  text: 'Buy meat',
+  done: true
+}];
 
-/* eslint-disable no-restricted-syntax */
+var renderListItems = function renderListItems(listItems) {
+  var listElem = document.querySelector(".list");
+  var listItemsElems = listItems.sort(function (a, b) {
+    return a.done - b.done;
+  }).map(function (_ref) {
+    var text = _ref.text,
+        done = _ref.done;
+    var listItemElem = document.createElement('li');
+    listItemElem.classList.add('list__item');
 
-/* eslint-disable max-classes-per-file */
-var User =
-/*#__PURE__*/
-function () {
-  function User(id, name, sessionId) {
-    _classCallCheck(this, User);
-
-    this._id = id;
-    this._name = name;
-    this._sessionId = sessionId;
-  }
-
-  _createClass(User, [{
-    key: "id",
-    get: function get() {
-      return this._id;
+    if (done) {
+      listItemElem.classList.add('list__item-done');
     }
-  }, {
-    key: "name",
-    get: function get() {
-      return this._name;
-    }
-  }, {
-    key: "sessionId",
-    get: function get() {
-      return this._sessionId;
-    }
-  }]);
 
-  return User;
-}();
+    var checkboxElem = document.createElement('input');
+    checkboxElem.setAttribute('type', 'checkbox');
+    checkboxElem.checked = done;
+    checkboxElem.classList.add('list__item-checkbox');
+    listItemElem.append(checkboxElem, text);
+    return listItemElem;
+  });
+  listElem.append.apply(listElem, _toConsumableArray(listItemsElems));
+};
 
-exports.User = User;
-
-var UserRepository =
-/*#__PURE__*/
-function () {
-  function UserRepository(users) {
-    _classCallCheck(this, UserRepository);
-
-    this._users = users;
-    Object.freeze(users);
-  }
-
-  _createClass(UserRepository, [{
-    key: "getUserNames",
-    value: function getUserNames() {
-      return this._users.map(function (user) {
-        return user._name;
-      });
-    }
-  }, {
-    key: "getUserIds",
-    value: function getUserIds() {
-      return this._users.map(function (user) {
-        return user._id;
-      });
-    }
-  }, {
-    key: "getUserNameById",
-    value: function getUserNameById(id) {
-      return this._users.filter(function (user) {
-        return user.id === id;
-      })[0].name;
-    }
-  }, {
-    key: "users",
-    get: function get() {
-      return this._users;
-    }
-  }]);
-
-  return UserRepository;
-}();
-
-exports.UserRepository = UserRepository;
+renderListItems(tasks);
