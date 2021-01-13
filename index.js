@@ -14,7 +14,7 @@ const renderListItems = (listItems) => {
       const listItemElem = document.createElement("li");
       listItemElem.classList.add("list__item");
       if (done) {
-        listItemElem.classList.add("list__item-done");
+        listItemElem.classList.add("list__item_done");
       }
       const checkboxElem = document.createElement("input");
       checkboxElem.setAttribute("type", "checkbox");

@@ -9,19 +9,19 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 var tasks = [{
-  text: 'Buy milk',
+  text: "Buy milk",
   done: false
 }, {
-  text: 'Pick up Tom from airport',
+  text: "Pick up Tom from airport",
   done: false
 }, {
-  text: 'Visit party',
+  text: "Visit party",
   done: false
 }, {
-  text: 'Visit doctor',
+  text: "Visit doctor",
   done: true
 }, {
-  text: 'Buy meat',
+  text: "Buy meat",
   done: true
 }];
 
@@ -32,17 +32,17 @@ var renderListItems = function renderListItems(listItems) {
   }).map(function (_ref) {
     var text = _ref.text,
         done = _ref.done;
-    var listItemElem = document.createElement('li');
-    listItemElem.classList.add('list__item');
+    var listItemElem = document.createElement("li");
+    listItemElem.classList.add("list__item");
 
     if (done) {
-      listItemElem.classList.add('list__item-done');
+      listItemElem.classList.add("list__item_done");
     }
 
-    var checkboxElem = document.createElement('input');
-    checkboxElem.setAttribute('type', 'checkbox');
+    var checkboxElem = document.createElement("input");
+    checkboxElem.setAttribute("type", "checkbox");
     checkboxElem.checked = done;
-    checkboxElem.classList.add('list__item-checkbox');
+    checkboxElem.classList.add("list__item-checkbox");
     listItemElem.append(checkboxElem, text);
     return listItemElem;
   });
