@@ -1,5 +1,4 @@
-export const createButton = (text) => {
-  const btn = document.createElement("button");
-  btn.textContent = text;
-  document.querySelector("body").appendChild(btn);
-};
+const getSection = (num) =>
+  document
+    .querySelector(`span[data-number="${num.toString()}"]`)
+    .parentElement.getAttribute("data-section");
