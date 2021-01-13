@@ -1,23 +1,93 @@
+"use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.UserRepository = exports.User = void 0;
 
-function ownKeys(object, enumerableOnly) { const keys = Object.keys(object); if (Object.getOwnPropertySymbols) { let symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter((sym) => Object.getOwnPropertyDescriptor(object, sym).enumerable); keys.push.apply(keys, symbols); } return keys; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _objectSpread(target) { for (let i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach((key) => { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach((key) => { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-const getCustomersList = function getCustomersList(obj) {
-  console.log(Object.values(obj).map((item) => _objectSpread({}, item)));
-};
+/* eslint-disable consistent-return */
 
-const customers = {
-  'customer-id-1': {
-    name: 'A',
-    age: 54
-  },
-  'customer-id-2': {
-    name: 'B',
-    age: 17
+/* eslint-disable no-restricted-syntax */
+
+/* eslint-disable max-classes-per-file */
+var User =
+/*#__PURE__*/
+function () {
+  function User(id, name, sessionId) {
+    _classCallCheck(this, User);
+
+    this._id = id;
+    this._name = name;
+    this._sessionId = sessionId;
   }
-};
-console.log(getCustomersList(customers));
+
+  _createClass(User, [{
+    key: "id",
+    get: function get() {
+      return this._id;
+    }
+  }, {
+    key: "name",
+    get: function get() {
+      return this._name;
+    }
+  }, {
+    key: "sessionId",
+    get: function get() {
+      return this._sessionId;
+    }
+  }]);
+
+  return User;
+}();
+
+exports.User = User;
+
+var UserRepository =
+/*#__PURE__*/
+function () {
+  function UserRepository(users) {
+    _classCallCheck(this, UserRepository);
+
+    this._users = users;
+    Object.freeze(users);
+  }
+
+  _createClass(UserRepository, [{
+    key: "getUserNames",
+    value: function getUserNames() {
+      return this._users.map(function (user) {
+        return user._name;
+      });
+    }
+  }, {
+    key: "getUserIds",
+    value: function getUserIds() {
+      return this._users.map(function (user) {
+        return user._id;
+      });
+    }
+  }, {
+    key: "getUserNameById",
+    value: function getUserNameById(id) {
+      return this._users.filter(function (user) {
+        return user.id === id;
+      })[0].name;
+    }
+  }, {
+    key: "users",
+    get: function get() {
+      return this._users;
+    }
+  }]);
+
+  return UserRepository;
+}();
+
+exports.UserRepository = UserRepository;
