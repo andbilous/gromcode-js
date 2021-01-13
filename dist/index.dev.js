@@ -3,20 +3,21 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getInputElement = exports.getTitleElement = void 0;
+exports.getItemsArray = exports.getItemsList = void 0;
 
-var getTitleElement = function getTitleElement() {
-  var titleElem = document.querySelector('.title');
-  console.dir(titleElem);
-  return titleElem;
+var getItemsList = function getItemsList() {
+  var elems = document.querySelectorAll('.technology');
+  console.dir(elems);
+  return elems;
 };
 
-exports.getTitleElement = getTitleElement;
+exports.getItemsList = getItemsList;
 
-var getInputElement = function getInputElement() {
-  var inputElem = document.querySelector('input[type="text"]');
-  console.dir(inputElem);
-  return inputElem;
+var getItemsArray = function getItemsArray() {
+  var elems = document.querySelectorAll('.tool');
+  var arr = Array.from(elems);
+  console.dir(arr);
+  return arr;
 };
 
-exports.getInputElement = getInputElement;
+exports.getItemsArray = getItemsArray;
