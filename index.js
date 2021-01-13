@@ -1,4 +1,9 @@
-export const getSection = (num) =>
-  document
-    .querySelector(`span[data-number="${num.toString()}"]`)
-    .parentElement.getAttribute("data-section");
+const squaredNumbers = () => {
+  Array.from(document.querySelectorAll(".number")).map((elem) => {
+    const currentValue = elem.getAttribute("data-number");
+    elem.setAttribute("data-squared-number", currentValue * currentValue);
+    return elem;
+  });
+};
+
+squaredNumbers();
