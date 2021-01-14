@@ -10,14 +10,18 @@ const logTarget = (text, color) => {
   eventsList.innerHTML += `<span style="color: ${color}; margin-left: 8px">${text}</span>`;
 };
 
+const logGrayDiv = logTarget.bind(null, "DIV", "grey");
+const logGrayP = logTarget.bind(null, "P", "grey");
+const logGraySpan = logTarget.bind(null, "SPAN", "grey");
+
 const logGreenDiv = logTarget.bind(null, "DIV", "green");
 const logGreenP = logTarget.bind(null, "P", "green");
 const logGreenSpan = logTarget.bind(null, "SPAN", "green");
 
 const attachListeners = () => {
   divElem.addEventListener("click", logGreenDiv);
-  pElem.addEventListener("click", logGreenP);
-  spanElem.addEventListener("click", logGreenSpan);
+  pElem.addEventListener("click", logGrayP);
+  spanElem.addEventListener("click", logGraySpan);
   divElem.addEventListener("click", logGreenDiv, true);
   pElem.addEventListener("click", logGreenP, true);
   spanElem.addEventListener("click", logGreenSpan, true);
