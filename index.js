@@ -50,7 +50,6 @@ const renderArena = () => {
 };
 
 const onSeatSelect = (e) => {
-  console.log(e.target.classList.contains("sector__seat"));
   const isSeat = e.target.classList.contains("sector__seat");
   if (!isSeat) {
     return;
@@ -60,7 +59,7 @@ const onSeatSelect = (e) => {
   const { sectorNumber } = e.target.closest(".sector").dataset;
   const selectedSeatElem = document.querySelector(".board__selected-seat");
 
-  selectedSeatElem.textContent = `S ${sectorNumber} -L ${lineNumber} - S${seatNumber}`;
+  selectedSeatElem.textContent = `S ${sectorNumber} - L ${lineNumber} - S ${seatNumber}`;
 };
 
 arenaElem.addEventListener("click", onSeatSelect);
