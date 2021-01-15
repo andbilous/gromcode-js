@@ -5,7 +5,8 @@ const emailErrorElem = document.querySelector(".error-text_email");
 const passwordErrorElem = document.querySelector(".error-text_password");
 
 const isRequired = (value) => (value ? undefined : "Required");
-const isEmail = (value) => (value ? undefined : "Should be an email");
+const isEmail = (value) =>
+  value.includes("@") ? undefined : "Should be an email";
 
 const validatorsByField = {
   email: [isRequired, isEmail],
@@ -29,7 +30,7 @@ const onEmailChange = (event) => {
 };
 
 const onPasswordChange = (event) => {
-  const errorText = [isRequired, isEmail]
+  const errorText = [isRequired]
     .map((validator) => validator(event.target.value))
     .filter((error) => error)
     .join(", ");
