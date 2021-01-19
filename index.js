@@ -1,62 +1,51 @@
-const listElem = document.querySelector(".list");
-const inputElem = document.querySelector(".task-input");
-const createBtn = document.querySelector(".create-task-btn");
+const emailInputElem = document.querySelector("#email");
+const passwordInputElem = document.querySelector("#password");
 
-const tasks = [
-  { text: "Buy milk", done: false },
-  { text: "Pick up Tom from airport", done: false },
-  { text: "Visit party", done: false },
-  { text: "Visit doctor", done: true },
-  { text: "Buy meat", done: true },
-];
+const emailErrorElem = document.querySelector(".error-text_email");
+const passwordErrorElem = document.querySelector(".error-text_password");
 
-const generateId = () => Math.floor(Math.random() * 10000).toString();
+const isRequired = (value) => (value ? undefined : "Required");
+const isEmail = (value) =>
+  value.includes("@") ? undefined : "Should be an email";
 
-const renderTasks = (tasksList) => {
-  listElem.innerHTML = "";
-  const tasksElems = tasksList
-    .sort((a, b) => a.done - b.done)
-    .map(({ text, done }, index) => {
-      const listItemElem = document.createElement("li");
-      listItemElem.classList.add("list__item");
-      const checkbox = document.createElement("input");
-      checkbox.setAttribute("type", "checkbox");
-      checkbox.checked = done;
-      checkbox.setAttribute("data-id", index);
-      checkbox.classList.add("list__item-checkbox");
-      if (done) {
-        listItemElem.classList.add("list__item_done");
-      }
-      listItemElem.append(checkbox, text);
-
-      return listItemElem;
-    });
-
-  listElem.append(...tasksElems);
+const validatorsByField = {
+  email: [isRequired, isEmail],
+  password: [isRequired],
 };
 
-const addTask = () => {
-  if (!inputElem.value) {
-    return;
-  }
-  const newTask = {
-    text: inputElem.value,
-    done: false,
-  };
-  tasks.push(newTask);
-  renderTasks(tasks);
+const validate = (fieldName, value) => {
+  const validators = validatorsByField[fieldName];
+  return validators
+    .map((validator) => validator(value))
+    .filter((errorText) => errorText)
+    .join(", ");
 };
 
-const toogleTask = (e) => {
-  if (e.target.classList.contains("list__item-checkbox")) {
-    const { id } = e.target.dataset;
-    tasks[id].done = e.target.checked;
-    renderTasks(tasks);
-  }
+const onEmailChange = (event) => {
+  const errorText = [isRequired, isEmail]
+    .map((validator) => validator(event.target.value))
+    .filter((error) => error)
+    .join(", ");
+  emailErrorElem.textContent = errorText;
 };
 
-listElem.addEventListener("click", toogleTask);
+const onPasswordChange = (event) => {
+  const errorText = [isRequired]
+    .map((validator) => validator(event.target.value))
+    .filter((error) => error)
+    .join(", ");
+  passwordErrorElem.textContent = errorText;
+};
 
-createBtn.addEventListener("click", addTask);
+emailInputElem.addEventListener("input", onEmailChange);
+passwordInputElem.addEventListener("input", onPasswordChange);
 
-renderTasks(tasks);
+const formElem = document.querySelector(".login-form");
+
+const onFormSubmit = (e) => {
+  e.preventDefault();
+  const formData = Object.fromEntries(new FormData(formElem));
+  alert(JSON.stringify(formData));
+};
+
+formElem.addEventListener("submit", onFormSubmit);
